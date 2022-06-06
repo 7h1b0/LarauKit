@@ -1,0 +1,39 @@
+:root {
+  --width-nav: 220px;
+  --space-m: 2rem;
+  --space-s: calc(var(--space-m) / 2);
+  --space-xs: calc(var(--space-m) / 3);
+
+  --font-l: 1.4rem;
+  --font-m: 1rem;
+  --font-s: 0.8rem;
+
+  --rounded: 0.5rem;
+
+  --color-primary: #edc097;
+  --color-secondary: #8bb7a2;
+  --color-tertiary: #ffebd1;
+  --color-quaternary: #bf314c;
+
+  --color-text: #fff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-inverse: #000;
+
+  --color-background-section: #242529;
+  --color-background: #161819;
+}
+
+html,
+body {
+  font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu;
+  font-variant-numeric: tabular-nums;
+}
+
+body {
+  background-color: var(--color-background);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
