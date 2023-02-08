@@ -25,6 +25,8 @@
       { title: 'Solde', data: data.incomes.map((value, index) => value + data.expenses[index]) }
     ]}
   />
+  <MonthlyTransaction lines={data.splitIncomes} />
+  <MonthlyTransaction lines={data.splitExpenses} />
 </section>
 
 <style>

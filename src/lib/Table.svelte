@@ -4,6 +4,7 @@
   type DataSet = {
     values: number[];
     label: string;
+    format?: boolean;
   };
 
   export let labels: string[];
@@ -27,7 +28,7 @@
         </td>
         {#each dataset.values as value}
           <td>
-            <p>{formatToCurrency(value)}</p>
+            <p>{dataset.format === false ? value : formatToCurrency(value)}</p>
           </td>
         {/each}
       </tr>

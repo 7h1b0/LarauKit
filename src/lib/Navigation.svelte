@@ -43,7 +43,6 @@
     display: grid;
     grid-template-columns: 60px 1fr 60px;
     place-items: center;
-    /* justify-content: space-around; */
     width: 100%;
     background: var(--color-background-section);
     padding: var(--space-s) 0;

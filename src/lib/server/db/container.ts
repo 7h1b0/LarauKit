@@ -3,7 +3,7 @@ import knex from './knexClient';
 export function getAll() {
   return knex('container')
     .select('id', 'title')
-    .orderBy('id')
+    .orderBy('container.title', 'ASC')
     .then((containers) => containers.map((containers) => ({ ...containers })));
 }
 
@@ -16,7 +16,7 @@ export function findAllWithBalance() {
     .select({ id: 'container.id', title: 'container.title' })
     .sum({ balance: 'value' })
     .join('transaction', 'transaction.containerId', 'container.id')
-    .groupBy('container.id')
-    .orderBy('transaction.performedAt', 'DESC')
+    .groupBy('transaction.containerId')
+    .orderBy('container.title', 'ASC')
     .then((containers) => containers.map((containers) => ({ ...containers })));
 }
