@@ -17,8 +17,6 @@
 
   let progressList: ProgressType[];
 
-  $: previousMonth = addToDate(data.date, -1);
-  $: nextMonth = addToDate(data.date, 1);
   $: progressList = data.categories.map((category) => {
     const total = data.transactions
       .filter((transaction) => transaction.categoryId === category.id)
@@ -26,12 +24,6 @@
 
     return { title: category.title, value: total };
   });
-
-  function addToDate(date: Date, offset: number) {
-    const newDate = new Date(date);
-    newDate.setMonth(date.getMonth() + offset);
-    return newDate;
-  }
 
   function filterTransaction(transactions: Transaction[], accountId: number, categoryId: number) {
     return transactions.filter((transaction) => {
@@ -48,8 +40,8 @@
   <section>
     <Navigation
       title={intl.format(data.date)}
-      previousNavigationLink={`/transactions/${previousMonth.getFullYear()}/${previousMonth.getMonth()}`}
-      nextNavigationLink={`/transactions/${nextMonth.getFullYear()}/${nextMonth.getMonth()}`}
+      previousNavigationLink={`/transactions/${data.previousMonth.getFullYear()}/${data.previousMonth.getMonth()}`}
+      nextNavigationLink={`/transactions/${data.nextMonth.getFullYear()}/${data.nextMonth.getMonth()}`}
     />
     <Table data={filterTransaction(data.transactions, $filterAccountId, $filterCategoryId)} />
   </section>
