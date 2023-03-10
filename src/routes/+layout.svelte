@@ -11,6 +11,6 @@
 
 <style>
   main {
-    margin: var(--space-m) var(--space-m) var(--space-m) calc(var(--width-nav) + var(--space-m));
+    margin: 0 var(--space-m) var(--space-m) calc(var(--width-nav) + var(--space-m));
   }
 </style>

@@ -9,7 +9,9 @@
 <style>
   header {
     position: sticky;
-    padding: 0 0 var(--space-m);
+    top: 0;
+    background: var(--color-background);
+    padding: var(--space-m) 0;
   }
 
   h1 {

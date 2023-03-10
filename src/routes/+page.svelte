@@ -21,17 +21,16 @@
     expense={data.expenseYear}
     total={data.patrimony}
   />
+  <aside class="grid span-3">
+    {#each data.accounts as account}
+      <div>
+        <small>{account.title}</small>
+        <p>{account.bank}</p>
+        <h2>{formatToCurrency(account.balance)}</h2>
+      </div>
+    {/each}
+  </aside>
 </div>
-
-<aside class="grid">
-  {#each data.accounts as account}
-    <div>
-      <small>{account.title}</small>
-      <p>{account.bank}</p>
-      <h2>{formatToCurrency(account.balance)}</h2>
-    </div>
-  {/each}
-</aside>
 
 <style>
   aside {
@@ -58,6 +57,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-m);
-    margin-bottom: var(--space-m);
+  }
+
+  .grid:not(.span-3) {
+    margin-top: var(--space-m);
+  }
+
+  .span-3 {
+    grid-column: 1 / 4;
   }
 </style>
