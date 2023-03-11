@@ -1,6 +1,7 @@
 <script lang="ts">
   import MonthlyTransaction from '$lib/MonthlyTransaction.svelte';
   import Header from '$lib/Header.svelte';
+  import BarChar from '$lib/BarChar.svelte';
   import Navigation from '$lib/Navigation.svelte';
   import type { PageData } from './$types';
 
@@ -18,6 +19,9 @@
     previousNavigationLink={`/balance/${previous}`}
     nextNavigationLink={`/balance/${nextYear}`}
   />
+
+  <BarChar primary={data.incomes} secondary={data.expenses} />
+
   <MonthlyTransaction
     lines={[
       { title: 'Produits', data: data.incomes },

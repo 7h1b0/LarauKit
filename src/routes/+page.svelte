@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  import Table from '$lib/TableTransaction.svelte';
   import Box from '$lib/Box.svelte';
   import BoxExtended from '$lib/BoxExtended.svelte';
   import { formatToCurrency } from '$lib/numberHelper';
