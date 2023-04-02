@@ -18,9 +18,9 @@
     },
     {
       label: 'Percentage',
-      format: false,
-      values: data.incomes.map((income, index) =>
-        Math.round((Math.abs(data.expenses[index].value) * 100) / income.value)
+      format: 'percent',
+      values: data.incomes.map(
+        (income, index) => Math.abs(data.expenses[index].value) / income.value
       )
     }
   ]}

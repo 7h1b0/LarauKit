@@ -10,16 +10,26 @@ export function getAllOpen() {
     .then((accounts) => accounts.map((account) => ({ ...account })));
 }
 
-export function getByType(accountType: number) {
+export type Account = {
+  id: number;
+  title: string;
+  bank: string;
+  accountType: number;
+  balance: number;
+};
+export function getByType(): Promise<Account[]> {
   return knex('account')
-    .select('account.id', { title: 'account.title' }, { bank: 'bank.title' })
+    .select(
+      { id: 'account.id' },
+      { title: 'account.title' },
+      { bank: 'bank.title' },
+      { accountType: 'account.accountTypeId' }
+    )
     .sum({ balance: 'value' })
     .join('bank', 'bank.id', 'account.bankId')
     .join('transaction', 'transaction.accountId', 'account.id')
-    .where('account.accountTypeId', accountType)
     .andWhere('closeAt', null)
     .groupBy('account.id')
-    .orderBy('bankId')
     .orderBy('id')
-    .then((accounts) => accounts.map((account) => ({ ...account })));
+    .then((accounts) => (accounts as Account[]).map((account) => ({ ...account })));
 }

@@ -9,7 +9,7 @@
 <Header title="Admin" />
 
 {#if form?.success}
-  <p>Done !</p>
+  <output>Done !</output>
 {/if}
 
 <section>
@@ -126,8 +126,9 @@
     color: var(--color-text);
   }
 
-  p {
+  output {
     background: var(--color-secondary);
+    border-radius: var(--rounded);
     padding: var(--space-s);
     margin: 0 0 var(--space-s);
   }

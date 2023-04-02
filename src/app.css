@@ -1,5 +1,5 @@
 :root {
-  --width-nav: 220px;
+  --width-nav: max(15vw, 220px);
   --space-m: 2rem;
   --space-s: calc(var(--space-m) / 2);
   --space-xs: calc(var(--space-m) / 3);
@@ -8,7 +8,7 @@
   --font-m: 1rem;
   --font-s: 0.8rem;
 
-  --rounded: 0.5rem;
+  --rounded: 0.8rem;
 
   --color-primary: #edc097;
   --color-secondary: #8bb7a2;

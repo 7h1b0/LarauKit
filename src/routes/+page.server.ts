@@ -13,7 +13,7 @@ export async function load() {
     activies.findIncomesForYear(currentYear),
     activies.findExpensesForYear(currentYear),
     activies.findPatrimony(),
-    account.getByType(1)
+    account.getByType()
   ]);
 
   const totalIncome = incomes.reduce((acc, income) => acc + income.value, 0);
@@ -22,12 +22,26 @@ export async function load() {
   const totalexpenseYear = expenseYear.reduce((acc, { value }) => acc + value, 0);
   const reshapedPatrimony = patrimony.reduce((acc, { value }) => acc + value, 0);
 
+  const mapAccountTypeToIndex = accounts.reduce((acc, account) => {
+    const index = acc.get(account.accountType);
+    if (index === undefined) {
+      acc.set(account.accountType, acc.size);
+    }
+    return acc;
+  }, new Map());
+
+  const groupedAccounts = accounts.reduce((acc, account) => {
+    const index = mapAccountTypeToIndex.get(account.accountType);
+    acc[index].push(account);
+    return acc;
+  }, Array.from({ length: mapAccountTypeToIndex.size }, () => []) as account.Account[][]);
+
   return {
     income: totalIncome,
     expense: totalExpense,
     incomeYear: totalIncomeYear,
     expenseYear: totalexpenseYear,
     patrimony: reshapedPatrimony,
-    accounts
+    groupedAccounts
   };
 }

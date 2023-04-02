@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { formatToCurrency } from './numberHelper';
+  import { formatToCurrency, formatToPercent } from './numberHelper';
 
   type DataSet = {
     values: number[];
     label: string;
-    format?: boolean;
+    format?: 'percent' | 'currency';
   };
 
   export let labels: string[];
@@ -28,7 +28,9 @@
         </td>
         {#each dataset.values as value}
           <td>
-            <p>{dataset.format === false ? value : formatToCurrency(value)}</p>
+            <p>
+              {dataset.format === 'percent' ? formatToPercent(value) : formatToCurrency(value)}
+            </p>
           </td>
         {/each}
       </tr>

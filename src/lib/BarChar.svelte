@@ -35,7 +35,7 @@
         y={`${boxSize - getWithFallback(secondaryPercentage[index])}%`}
         x={`${(100 / 12) * index + 4.3}%`}
         width="2%"
-        rx="1%"
+        rx=".4%"
         class="secondary"
       />
       <rect
@@ -43,7 +43,7 @@
         y={`${boxSize - percentage}%`}
         x={`${(100 / 12) * index + 2}%`}
         width="2%"
-        rx="1%"
+        rx=".4%"
       />
     </g>
   {/each}

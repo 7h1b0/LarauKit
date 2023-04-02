@@ -20,15 +20,17 @@
     expense={data.expenseYear}
     total={data.patrimony}
   />
-  <aside class="grid span-3">
-    {#each data.accounts as account}
-      <div>
-        <small>{account.title}</small>
-        <p>{account.bank}</p>
-        <h2>{formatToCurrency(account.balance)}</h2>
-      </div>
-    {/each}
-  </aside>
+  {#each data.groupedAccounts as group}
+    <aside class="grid span-3">
+      {#each group as account}
+        <div>
+          <small>{account.title}</small>
+          <p>{account.bank}</p>
+          <h2>{formatToCurrency(account.balance)}</h2>
+        </div>
+      {/each}
+    </aside>
+  {/each}
 </div>
 
 <style>
