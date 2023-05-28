@@ -57,3 +57,11 @@ export function findExpensesForYear(year: number) {
 export function findPatrimony() {
   return knex('transaction').sum({ value: 'value' });
 }
+
+export function findByAccountType(accountType: number) {
+  return knex('transaction')
+    .sum({ value: 'value' })
+    .join('account', 'transaction.accountId', 'account.id')
+    .where('accountTypeId', accountType)
+    .then((data) => data[0].value);
+}

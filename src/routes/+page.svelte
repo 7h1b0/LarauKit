@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import Box from '$lib/Box.svelte';
-  import BoxExtended from '$lib/BoxExtended.svelte';
   import { formatToCurrency } from '$lib/numberHelper';
+  import InformationItem from '$lib/InformationItem.svelte';
 
   export let data: PageData;
 </script>
@@ -12,16 +12,23 @@
   <meta name="description" content="Larau" />
 </svelte:head>
 
-<div class="grid">
-  <Box title="This month" income={data.income} expense={data.expense} />
-  <BoxExtended
-    title="This year"
-    income={data.incomeYear}
-    expense={data.expenseYear}
-    total={data.patrimony}
-  />
+<div class="grid-1">
+  <div class="grid-1-2">
+    <Box title="This month" variant="primary">
+      <InformationItem label="Income" icon="up" amount={data.income} />
+      <InformationItem label="Expense" icon="down" amount={data.expense} />
+    </Box>
+
+    <Box title="This year" variant="secondary">
+      <InformationItem label="Income" icon="up" amount={data.incomeYear} />
+      <InformationItem label="Expense" icon="down" amount={data.expenseYear} />
+      <InformationItem label="Patrimony" icon="bar" amount={data.patrimony} />
+      <InformationItem label="Increase" icon="stack" amount={data.incomeYear + data.expenseYear} />
+    </Box>
+  </div>
+
   {#each data.groupedAccounts as group}
-    <aside class="grid span-3">
+    <aside class="grid-3">
       {#each group as account}
         <div>
           <small>{account.title}</small>
@@ -54,17 +61,23 @@
     margin-top: var(--space-xs);
   }
 
-  .grid {
+  .grid-1,
+  .grid-3,
+  .grid-1-2 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-m);
   }
 
-  .grid:not(.span-3) {
+  .grid-1 {
     margin-top: var(--space-m);
+    grid-template-columns: 1fr;
   }
 
-  .span-3 {
-    grid-column: 1 / 4;
+  .grid-1-2 {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 </style>
