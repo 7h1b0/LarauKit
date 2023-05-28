@@ -131,6 +131,7 @@
     border-radius: var(--rounded);
     padding: var(--space-s);
     margin: 0 0 var(--space-s);
+    display: block;
   }
 
   .expand {

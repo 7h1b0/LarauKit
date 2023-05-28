@@ -6,7 +6,7 @@
 
   const boxSize = 90;
 
-  $: legends = Math.ceil(Math.max(...primary) / 1000);
+  $: legends = Math.max(Math.ceil(Math.max(...primary) / 1000), 6);
   $: max = legends * 1000;
   $: primaryPercentage = primary.map((nmb) => Math.abs((nmb * boxSize) / max));
   $: secondaryPercentage = secondary.map((nmb) => Math.abs((nmb * boxSize) / max));
