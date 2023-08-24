@@ -119,7 +119,7 @@
     width: 100%;
     box-sizing: border-box;
     padding: var(--space-xs);
-    margin-top: var(--space-xs);
+    margin-block-start: var(--space-xs);
     background: var(--color-background);
     border-radius: var(--rounded);
     border: none;

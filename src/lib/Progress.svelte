@@ -19,7 +19,7 @@
 
   progress {
     display: block;
-    width: 100%;
+    inline-size: 100%;
     border-radius: var(--rounded);
     overflow: hidden;
     background: #6f9281;

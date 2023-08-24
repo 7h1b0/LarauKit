@@ -28,7 +28,7 @@
       icon="stack"
       amount={data.account}
     />
-    <InformationItem label={`Sacing (${percent(data.saving)})`} icon="stack" amount={data.saving} />
+    <InformationItem label={`Saving (${percent(data.saving)})`} icon="stack" amount={data.saving} />
   </Box>
 </div>
 

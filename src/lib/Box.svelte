@@ -28,7 +28,7 @@
 
   .items {
     display: grid;
-    margin-top: var(--space-s);
+    margin-block-start: var(--space-s);
     grid-auto-flow: column;
     grid-template-rows: 1fr 1fr;
     gap: var(--space-s);

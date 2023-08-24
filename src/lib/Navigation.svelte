@@ -43,7 +43,7 @@
     display: grid;
     grid-template-columns: 60px 1fr 60px;
     place-items: center;
-    width: 100%;
+    inline-size: 100%;
     background: var(--color-background-section);
     padding: var(--space-s) 0;
     color: var(--color-text);
@@ -52,8 +52,8 @@
 
   svg,
   a {
-    width: 25px;
-    height: 25px;
+    inline-size: 25px;
+    block-size: 25px;
     color: var(--color-text);
   }
 </style>

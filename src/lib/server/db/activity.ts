@@ -2,6 +2,14 @@ import knex from './knexClient';
 
 type MonthlyBalance = { year: string; value: number };
 
+export type YearlyCategoryBalance = {
+  year: number;
+  value: number;
+  categoryId: string;
+  title: string;
+  income: boolean;
+};
+
 export function findIncomesYearly(): Promise<MonthlyBalance[]> {
   return knex('transaction')
     .select({ year: knex.raw('YEAR(performedAt)') })
@@ -24,6 +32,16 @@ export function findExpensesYearly(): Promise<MonthlyBalance[]> {
     .orderByRaw('YEAR(performedAt) ASC')
     .then((expenses) => expenses as MonthlyBalance[])
     .then((expenses) => expenses.map((expense) => ({ ...expense })));
+}
+
+export function findMonthlyCategoriesSum(): Promise<YearlyCategoryBalance[]> {
+  return knex('transaction')
+    .select({ year: knex.raw('YEAR(performedAt)'), title: 'title', categoryId: 'categoryId', income: 'income' })
+    .sum({ value: 'value' })
+    .join('category', 'category.id', 'transaction.categoryId')
+    .groupByRaw('YEAR(performedAt), categoryId')
+    .then((data) => data as YearlyCategoryBalance[])
+    .then((data) => data.map((balance) => ({ ...balance })));
 }
 
 type MonthlyExpenses = { title: string; categoryId: number; value: number };

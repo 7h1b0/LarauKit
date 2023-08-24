@@ -5,7 +5,6 @@
   export let progressList: ProgressType[];
 
   $: maximum = progressList.reduce((acc, { value }) => Math.max(acc, value), 0);
-  // $: sortedList = progressList.sort((a, b) => Math.abs(b.value) - Math.abs(a.value));
 </script>
 
 <aside>

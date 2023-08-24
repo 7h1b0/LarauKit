@@ -9,7 +9,7 @@
 <style>
   header {
     position: sticky;
-    top: 0;
+    inset-block-start: 0;
     background: var(--color-background);
     padding: var(--space-m) 0;
   }

@@ -41,8 +41,8 @@
 
   aside {
     background: var(--color-primary);
-    width: 100%;
-    min-height: 200px;
+    inline-size: 100%;
+    min-block-size: 200px;
     border-radius: var(--rounded);
     padding: var(--space-s);
     box-sizing: border-box;
@@ -58,7 +58,7 @@
 
   select {
     display: block;
-    width: 100%;
+    inline-size: 100%;
     background: var(--color-background-section);
     border: none;
     color: var(--color-text);

@@ -58,7 +58,7 @@
   h2 {
     color: var(--color-primary);
     font-size: calc(var(--font-m) * 2);
-    margin-top: var(--space-xs);
+    margin-block-start: var(--space-xs);
   }
 
   .grid-1,
@@ -69,7 +69,7 @@
   }
 
   .grid-1 {
-    margin-top: var(--space-m);
+    margin-block-start: var(--space-m);
     grid-template-columns: 1fr;
   }
 

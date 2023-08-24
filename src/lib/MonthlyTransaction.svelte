@@ -42,7 +42,7 @@
     table-layout: fixed;
     border-collapse: collapse;
     overflow: hidden;
-    width: 100%;
+    inline-size: 100%;
     background: var(--color-background-section);
     border-radius: var(--rounded);
   }
@@ -54,7 +54,7 @@
   }
 
   tbody tr {
-    border-top: 1px solid var(--color-background);
+    border-block-start: 1px solid var(--color-background);
     font-size: var(--font-m);
   }
   td {

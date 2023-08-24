@@ -30,11 +30,14 @@ export async function load() {
     return acc;
   }, new Map());
 
-  const groupedAccounts = accounts.reduce((acc, account) => {
-    const index = mapAccountTypeToIndex.get(account.accountType);
-    acc[index].push(account);
-    return acc;
-  }, Array.from({ length: mapAccountTypeToIndex.size }, () => []) as account.Account[][]);
+  const groupedAccounts = accounts.reduce(
+    (acc, account) => {
+      const index = mapAccountTypeToIndex.get(account.accountType);
+      acc[index].push(account);
+      return acc;
+    },
+    Array.from({ length: mapAccountTypeToIndex.size }, () => []) as account.Account[][]
+  );
 
   return {
     income: totalIncome,

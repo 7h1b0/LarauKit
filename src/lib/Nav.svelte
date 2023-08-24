@@ -78,12 +78,13 @@
   nav {
     width: var(--width-nav);
     position: fixed;
-    top: 0;
+    inset-block-start: 0;
   }
 
   ul {
     list-style: none;
-    margin: var(--space-m) 0 0 var(--space-s);
+    margin-block-start: var(--space-m);
+    margin-inline-start: var(--space-s);
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -114,7 +115,7 @@
   svg {
     color: inherit;
     fill: inherit;
-    width: 18px;
-    height: 18px;
+    inline-size: 18px;
+    block-size: 18px;
   }
 </style>

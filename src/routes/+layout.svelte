@@ -11,6 +11,7 @@
 
 <style>
   main {
-    margin: 0 var(--space-m) var(--space-m) calc(var(--width-nav) + var(--space-m));
+    margin-block: 0 var(--space-m);
+    margin-inline: calc(var(--width-nav) + var(--space-m)) var(--space-m);
   }
 </style>
