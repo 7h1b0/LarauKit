@@ -19,6 +19,28 @@ export function add(transaction: Transaction) {
   });
 }
 
+export type PayloadTransaction = {
+  id: string;
+  amount: number;
+  category: string;
+  account: string;
+  description: string;
+};
+export function update(transaction: PayloadTransaction) {
+  return knex('transaction')
+    .update({
+      accountId: transaction.account,
+      categoryId: transaction.category,
+      value: transaction.amount,
+      description: transaction.description
+    })
+    .where({ id: transaction.id });
+}
+
+export function remove(id: string) {
+  return knex('transaction').where({ id }).del();
+}
+
 export function findAll(limit: number, offset: number) {
   return knex('transaction')
     .select(

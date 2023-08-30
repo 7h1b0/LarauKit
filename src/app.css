@@ -1,8 +1,10 @@
 :root {
-  --width-nav: max(15vw, 220px);
   --space-m: 2rem;
   --space-s: calc(var(--space-m) / 2);
   --space-xs: calc(var(--space-m) / 3);
+
+  --size-nav: max(15vw, 230px);
+  --size-icon: 18px;
 
   --font-l: 1.4rem;
   --font-m: 1rem;
@@ -20,6 +22,30 @@
 
   --color-background-section: oklch(27% 0 230);
   --color-background: oklch(20% 0 230);
+
+  --animation-delay: 0.6s;
+  --animation-timing: linear(
+    0,
+    0.01 3.6%,
+    0.034,
+    0.074 9.1%,
+    0.128 11.4%,
+    0.271 15%,
+    0.544 18.3%,
+    0.66 20.6%,
+    0.765 24.6%,
+    0.845 30.4%,
+    0.883 35.1%,
+    0.916 40.6%,
+    0.942 47.2%,
+    0.963 55%,
+    0.991 74.4%,
+    1
+  );
+}
+
+body:has([data-panel='true']) {
+  --size-nav: calc(var(--space-m) * 2 + 18px + var(--space-s) * 2);
 }
 
 html,

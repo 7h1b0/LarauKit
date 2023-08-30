@@ -56,4 +56,8 @@
     block-size: 25px;
     color: var(--color-text);
   }
+
+  :is(a, svg):hover {
+    color: var(--color-primary)
+  }
 </style>
