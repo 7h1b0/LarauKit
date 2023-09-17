@@ -26,6 +26,14 @@
     border: none;
   }
 
+  progress::-webkit-progress-value {
+    background-color: var(--color-background);
+  }
+  
+  progress::-webkit-progress-bar {
+    background-color: #6f9281;
+  }
+
   progress::-moz-progress-bar {
     background-color: var(--color-background);
   }

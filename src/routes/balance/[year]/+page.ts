@@ -28,6 +28,9 @@ export const load = (({ data }) => {
 
   Object.entries(record).forEach(([id, values]) => {
     const category = getCategory(Number(id));
+    if (!category) {
+      return;
+    }
     if (category.income) {
       splitIncomes.push({ title: category.title, data: values });
     } else {

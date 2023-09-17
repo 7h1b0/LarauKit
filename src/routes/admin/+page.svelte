@@ -125,6 +125,10 @@
     border: none;
     color: var(--color-text);
   }
+  
+  :is(select, input):focus {
+    outline: var(--color-primary) 2px solid;
+  }
 
   output {
     background: var(--color-secondary);

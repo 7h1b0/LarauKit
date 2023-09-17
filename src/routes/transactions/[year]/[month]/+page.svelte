@@ -6,7 +6,9 @@
   import { filterAccountId, filterCategoryId } from '$lib/filterStore';
   import type { Transaction, ProgressType } from '$lib/types';
   import type { PageData } from './$types';
-  import SidePanel from '$lib/SidePanel.svelte';
+  import ProgressAside from '$lib/ProgressAside.svelte';
+    import SidePanel from '$lib/SidePanel.svelte';
+    import TransactionDetail from '$lib/TransactionDetail.svelte';
 
   export let data: PageData;
 
@@ -33,6 +35,18 @@
       return matchAccountId && matchCategoryId;
     });
   }
+
+  let isPanelOpen = false;
+  let selectedTransaction: Transaction | undefined = undefined;
+  function closePanel() {
+    isPanelOpen = false;
+  }
+
+  function openSidePanel(transaction: Transaction) {
+    selectedTransaction = transaction;
+    isPanelOpen = true;
+  }
+
 </script>
 
 <Header title="Transactions" />
@@ -43,15 +57,19 @@
       previousNavigationLink={`/transactions/${data.previousMonth.getFullYear()}/${data.previousMonth.getMonth()}`}
       nextNavigationLink={`/transactions/${data.nextMonth.getFullYear()}/${data.nextMonth.getMonth()}`}
     />
-    <Table data={filterTransaction(data.transactions, $filterAccountId, $filterCategoryId)} />
+    <Table data={filterTransaction(data.transactions, $filterAccountId, $filterCategoryId)} onClick={openSidePanel} />
   </section>
 
   <div>
     <FilterAside accounts={data.accounts} categories={data.categories} />
 
-    <SidePanel title="Categories" {progressList} />
+    <ProgressAside title="Categories" {progressList} />
   </div>
 </div>
+
+<SidePanel isOpen={isPanelOpen} closePanel={closePanel}>
+  <TransactionDetail transaction={selectedTransaction} accounts={data.accounts} categories={data.categories} />
+</SidePanel>
 
 <style>
   .grid {

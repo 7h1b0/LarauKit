@@ -4,6 +4,7 @@
   import type { Transaction } from './types';
 
   export let data: Transaction[];
+  export let onClick: (data: Transaction) => void;
 </script>
 
 <table>
@@ -17,7 +18,7 @@
   </thead>
   <tbody>
     {#each data as line}
-      <tr>
+      <tr on:click={() => onClick(line)}>
         <td>
           <small>{line.bank}</small>
           <p>{line.account}</p>
@@ -60,6 +61,7 @@
   td {
     color: var(--color-text);
     padding: var(--space-xs) var(--space-s);
+    cursor: pointer;
   }
 
   td:last-child {

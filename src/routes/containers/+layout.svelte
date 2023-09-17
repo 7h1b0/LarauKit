@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { PageData } from './$types';
+  import type { LayoutData } from './$types';
   import Header from '$lib/Header.svelte';
   import { formatToCurrency } from '$lib/numberHelper';
 
-  export let data: PageData;
+  export let data: LayoutData;
 </script>
 
 <div>

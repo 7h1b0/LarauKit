@@ -1,6 +1,6 @@
 import knex from './knexClient';
 
-export function getAllOpen() {
+export function getAllOpen(): Promise<{ id: number; account: string; bank: string }[]> {
   return knex('account')
     .select({ id: 'account.id' }, { account: 'account.title' }, { bank: 'bank.title' })
     .join('bank', 'bank.id', 'account.bankId')

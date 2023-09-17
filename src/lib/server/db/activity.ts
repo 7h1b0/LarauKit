@@ -1,6 +1,6 @@
 import knex from './knexClient';
 
-type MonthlyBalance = { year: string; value: number };
+type MonthlyBalance = { year: number; value: number };
 
 export type YearlyCategoryBalance = {
   year: number;
@@ -36,7 +36,12 @@ export function findExpensesYearly(): Promise<MonthlyBalance[]> {
 
 export function findMonthlyCategoriesSum(): Promise<YearlyCategoryBalance[]> {
   return knex('transaction')
-    .select({ year: knex.raw('YEAR(performedAt)'), title: 'title', categoryId: 'categoryId', income: 'income' })
+    .select({
+      year: knex.raw('YEAR(performedAt)'),
+      title: 'title',
+      categoryId: 'categoryId',
+      income: 'income'
+    })
     .sum({ value: 'value' })
     .join('category', 'category.id', 'transaction.categoryId')
     .groupByRaw('YEAR(performedAt), categoryId')
