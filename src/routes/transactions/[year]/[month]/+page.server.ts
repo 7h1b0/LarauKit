@@ -17,7 +17,7 @@ export async function load({ params }: Params) {
     transaction.findByDate(Number(params.month) + 1, params.year),
     account.getAllOpen(),
     category.getAll(),
-    container.getAll(),
+    container.getAll()
   ]);
 
   const date = new Date(params.year, params.month, 5);

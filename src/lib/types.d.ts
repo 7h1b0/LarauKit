@@ -25,7 +25,7 @@ export type Category = {
 export type Container = {
   id: number;
   title: string;
-}
+};
 
 export type ProgressType = {
   title: string;
