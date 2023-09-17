@@ -31,6 +31,7 @@
     inset: 0 0 0 auto;
     transform: translateX(100%);
     transition: transform var(--animation-delay) var(--animation-timing);
+    border-inline-start: 1px solid var(--color-background);
   }
 
   #panel[data-panel="true"] {

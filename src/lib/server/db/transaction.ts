@@ -1,14 +1,14 @@
+import type { Transaction } from '$lib/types';
 import knex from './knexClient';
 
-type Transaction = {
+export function add(transaction: {
   account: string;
   category: string;
   amount: number;
   container?: string;
   description: string;
   date: Date;
-};
-export function add(transaction: Transaction) {
+}) {
   return knex('transaction').insert({
     accountId: transaction.account,
     categoryId: transaction.category,
@@ -41,7 +41,7 @@ export function remove(id: string) {
   return knex('transaction').where({ id }).del();
 }
 
-export function findAll(limit: number, offset: number) {
+export function findAll(limit: number, offset: number): Promise<Transaction[]> {
   return knex('transaction')
     .select(
       'description',
@@ -49,6 +49,7 @@ export function findAll(limit: number, offset: number) {
       'performedAt',
       'value',
       'categoryId',
+      'accountId',
       { category: 'category.title' },
       { account: 'account.title' },
       { bank: 'bank.title' }
@@ -61,7 +62,7 @@ export function findAll(limit: number, offset: number) {
     .orderBy('performedAt', 'desc');
 }
 
-export function findByDate(month: number, year: number) {
+export function findByDate(month: number, year: number): Promise<Transaction[]> {
   return knex('transaction')
     .select(
       'description',
@@ -82,7 +83,7 @@ export function findByDate(month: number, year: number) {
     .then((transactions) => transactions.map((transaction) => ({ ...transaction })));
 }
 
-export function findByContainerId(containerId: number) {
+export function findByContainerId(containerId: number): Promise<Transaction[]> {
   return knex('transaction')
     .select(
       'description',

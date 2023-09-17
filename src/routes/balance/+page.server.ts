@@ -29,8 +29,12 @@ export async function load() {
   ]);
 
   const labels = incomes.map(({ year }) => year);
-  const incomeCategories = Array.from(new Set(monthlyCategorySum.filter(({ income}) => income).map(({ title }) => title)));
-  const expenseCategories = Array.from(new Set(monthlyCategorySum.filter(({ income}) => !income).map(({ title }) => title)));
+  const incomeCategories = Array.from(
+    new Set(monthlyCategorySum.filter(({ income }) => income).map(({ title }) => title))
+  );
+  const expenseCategories = Array.from(
+    new Set(monthlyCategorySum.filter(({ income }) => !income).map(({ title }) => title))
+  );
   const groupByCategory = groupBy(monthlyCategorySum, (element) => element.title);
 
   return { incomes, expenses, labels, incomeCategories, expenseCategories, groupByCategory };

@@ -4,10 +4,11 @@
   import Header from '$lib/Header.svelte';
 
   export let data: PageData;
+  $: labels = data.labels.map(label => `${label}`)
 
-  function getValuePerYear(years: string[], yearlyCategoryBalance: any[]) {
+  function getValuePerYear(years: number[], yearlyCategoryBalance: {year: number, value: number}[]) {
     return years.map((year) => {
-      const value = yearlyCategoryBalance.find((balance) => balance.year == year);
+      const value = yearlyCategoryBalance.find((balance) => balance.year === year);
       return value ? value.value : 0;
     });
   }
@@ -17,7 +18,7 @@
 
 <section>
   <Table
-    labels={data.labels}
+    labels={labels}
     datasets={[
       { label: 'Incomes', values: data.incomes.map((income) => income.value) },
       { label: 'Expenses', values: data.expenses.map((expense) => expense.value) },
@@ -35,7 +36,7 @@
     ]}
   />
   <Table
-    labels={data.labels}
+    labels={labels}
     datasets={data.incomeCategories.map((category) => {
       const values = data.groupByCategory.get(category) || [];
       return {
@@ -45,7 +46,7 @@
     })}
   />
   <Table
-    labels={data.labels}
+    labels={labels}
     datasets={data.expenseCategories.map((category) => {
       const values = data.groupByCategory.get(category) || [];
       return {

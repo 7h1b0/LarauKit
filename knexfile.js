@@ -1,3 +1,7 @@
+/**
+ * @param {{ type: string; length: number; string: () => string; }} field
+ * @param {() => any} next
+ */
 function typeCast(field, next) {
   if (field.type === 'TINY' && field.length === 1) {
     return field.string() === '1';

@@ -1,6 +1,11 @@
 import knex from './knexClient';
 
-export function getAll() {
+type Category = {
+  id: number;
+  title: string;
+  income: boolean;
+};
+export function getAll(): Promise<Category[]> {
   return knex('category')
     .select('id', 'title', 'income')
     .orderBy('title')
