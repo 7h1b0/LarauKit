@@ -1,9 +1,10 @@
 <script lang="ts">
-  import type { Account, Category, Transaction } from "./types";
+  import type { Account, Category, Transaction, Container } from "./types";
 
   export let transaction: Transaction | undefined;
   export let categories: Category[];
   export let accounts: Account[];
+  export let containers: Container[];
 </script>
 
   {#if transaction !== undefined}
@@ -33,6 +34,17 @@
       Amount
       <input type="text" name="amount" required value={transaction.value}/>
     </label>
+    <label class="expand">
+      Container
+      <select name="container" value={transaction.containerId}>
+        {#each containers as container}
+          <option value={container.id}>
+            {container.title}
+          </option>
+        {/each}
+      </select>
+    </label>
+    
     <label class="expand">
       Description
       <input type="text" name="description" required value={transaction.description}/>
@@ -81,5 +93,9 @@ form {
     border-radius: var(--rounded);
     color: var(--color-text-inverse);
     cursor: pointer;
+  }
+
+  .expand {
+    grid-column: 1 / 3;
   }
 </style>

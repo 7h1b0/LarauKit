@@ -8,6 +8,7 @@ export type Transaction = {
   performedAt: string;
   accountId: number;
   categoryId: number;
+  containerId?: number;
 };
 
 export type Account = {
@@ -20,6 +21,11 @@ export type Category = {
   title: string;
   id: number;
 };
+
+export type Container = {
+  id: number;
+  title: string;
+}
 
 export type ProgressType = {
   title: string;

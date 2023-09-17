@@ -68,7 +68,7 @@
 </div>
 
 <SidePanel isOpen={isPanelOpen} closePanel={closePanel}>
-  <TransactionDetail transaction={selectedTransaction} accounts={data.accounts} categories={data.categories} />
+  <TransactionDetail transaction={selectedTransaction} accounts={data.accounts} categories={data.categories} containers={data.containers} />
 </SidePanel>
 
 <style>

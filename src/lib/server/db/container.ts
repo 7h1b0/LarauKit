@@ -1,9 +1,6 @@
+import type { Container } from '$lib/types';
 import knex from './knexClient';
 
-type Container = {
-  id: number;
-  title: string;
-};
 export function getAll(): Promise<Container[]> {
   return knex('container')
     .select('id', 'title')

@@ -31,8 +31,8 @@
     <aside class="grid-3">
       {#each group as account}
         <div>
-          <small>{account.title}</small>
-          <p>{account.bank}</p>
+          <small>{account.bank}</small>
+          <p>{account.title}</p>
           <h2>{formatToCurrency(account.balance)}</h2>
         </div>
       {/each}

@@ -25,41 +25,23 @@ export type PayloadTransaction = {
   category: string;
   account: string;
   description: string;
+  container?: string;
 };
+
 export function update(transaction: PayloadTransaction) {
   return knex('transaction')
     .update({
       accountId: transaction.account,
       categoryId: transaction.category,
       value: transaction.amount,
-      description: transaction.description
+      description: transaction.description,
+      containerId: transaction.container
     })
     .where({ id: transaction.id });
 }
 
 export function remove(id: string) {
   return knex('transaction').where({ id }).del();
-}
-
-export function findAll(limit: number, offset: number): Promise<Transaction[]> {
-  return knex('transaction')
-    .select(
-      'description',
-      'transaction.id',
-      'performedAt',
-      'value',
-      'categoryId',
-      'accountId',
-      { category: 'category.title' },
-      { account: 'account.title' },
-      { bank: 'bank.title' }
-    )
-    .join('category', 'category.id', 'transaction.categoryId')
-    .join('account', 'account.id', 'transaction.accountId')
-    .join('bank', 'bank.id', 'account.bankId')
-    .limit(limit)
-    .offset(offset)
-    .orderBy('performedAt', 'desc');
 }
 
 export function findByDate(month: number, year: number): Promise<Transaction[]> {
@@ -71,6 +53,7 @@ export function findByDate(month: number, year: number): Promise<Transaction[]> 
       'value',
       'categoryId',
       'accountId',
+      'containerId',
       { category: 'category.title' },
       { account: 'account.title' },
       { bank: 'bank.title' }
@@ -92,6 +75,7 @@ export function findByContainerId(containerId: number): Promise<Transaction[]> {
       'value',
       'categoryId',
       'accountId',
+      'containerId',
       { category: 'category.title' },
       { account: 'account.title' },
       { bank: 'bank.title' }
