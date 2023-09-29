@@ -66,6 +66,28 @@ export function findByDate(month: number, year: number): Promise<Transaction[]> 
     .then((transactions) => transactions.map((transaction) => ({ ...transaction })));
 }
 
+export function findById(transactionId: number): Promise<Transaction> {
+  return knex('transaction')
+    .first(
+      'description',
+      'transaction.id',
+      'performedAt',
+      'value',
+      'categoryId',
+      'accountId',
+      'containerId',
+      { category: 'category.title' },
+      { account: 'account.title' },
+      { bank: 'bank.title' }
+    )
+    .join('category', 'category.id', 'transaction.categoryId')
+    .join('account', 'account.id', 'transaction.accountId')
+    .join('bank', 'bank.id', 'account.bankId')
+    .orderBy('performedAt', 'desc')
+    .where('transaction.id', transactionId)
+    .then((transaction) => ({ ...transaction }));
+}
+
 export function findByContainerId(containerId: number): Promise<Transaction[]> {
   return knex('transaction')
     .select(

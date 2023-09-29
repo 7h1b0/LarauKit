@@ -1,15 +1,15 @@
 <script lang="ts">
-  import type { Account, Category, Transaction, Container } from "./types";
+  import type { Account, Category, Transaction, Container } from './types';
 
-  export let transaction: Transaction | undefined;
+  export let transaction: Transaction | null;
   export let categories: Category[];
   export let accounts: Account[];
   export let containers: Container[];
 </script>
 
-  {#if transaction !== undefined}
+{#if transaction !== null}
   <form method="POST" action="?/updateTransaction">
-    <input type="hidden" name="id" value={transaction.id}/>
+    <input type="hidden" name="id" value={transaction.id} />
     <label>
       Account
       <select name="account">
@@ -32,7 +32,7 @@
     </label>
     <label>
       Amount
-      <input type="text" name="amount" required value={transaction.value}/>
+      <input type="text" name="amount" required value={transaction.value} />
     </label>
     <label class="expand">
       Container
@@ -44,19 +44,19 @@
         {/each}
       </select>
     </label>
-    
+
     <label class="expand">
       Description
-      <input type="text" name="description" required value={transaction.description}/>
+      <input type="text" name="description" required value={transaction.description} />
     </label>
 
     <button type="submit">Update</button>
     <button id="delete" type="submit" formaction="?/deleteTransaction">Delete</button>
   </form>
-  {/if}
+{/if}
 
 <style>
-form {
+  form {
     color: var(--color-text);
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -85,7 +85,7 @@ form {
     background: var(--color-primary);
   }
   #delete {
-    background: var(--color-tertiary)
+    background: var(--color-tertiary);
   }
   button {
     height: var(--space-m);
