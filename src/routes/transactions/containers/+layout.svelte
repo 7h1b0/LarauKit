@@ -12,7 +12,7 @@
     <ul>
       {#each data.containers as container}
         <li>
-          <a href={`/containers/${container.id}`}>
+          <a href={`/transactions/containers/${container.id}`}>
             <p>{container.title}</p>
             <small>{formatToCurrency(container.balance)}</small>
           </a>
@@ -50,7 +50,7 @@
   a:focus-visible {
     background: var(--color-background-section);
     border-radius: var(--rounded);
-    outline: var(--color-background-section) solid 2px;
+    outline: var(--color-background-section) solid 8px;
   }
 
   li:not(:last-child)::after {

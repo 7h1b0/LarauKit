@@ -1,7 +1,6 @@
 import * as transaction from '$lib/server/db/transaction';
 import * as account from '$lib/server/db/account';
 import * as category from '$lib/server/db/category';
-import * as container from '$lib/server/db/container';
 
 import type { Actions, RequestEvent } from '@sveltejs/kit';
 
@@ -13,11 +12,10 @@ type Params = {
 };
 /** @type {import('@sveltejs/kit').PageLoad} */
 export async function load({ params }: Params) {
-  const [transactions, accounts, categories, containers] = await Promise.all([
+  const [transactions, accounts, categories] = await Promise.all([
     transaction.findByDate(Number(params.month) + 1, params.year),
     account.getAllOpen(),
-    category.getAll(),
-    container.getAll()
+    category.getAll()
   ]);
 
   const date = new Date(params.year, params.month, 5);
@@ -26,8 +24,7 @@ export async function load({ params }: Params) {
     transactions,
     date,
     accounts,
-    categories,
-    containers
+    categories
   };
 }
 

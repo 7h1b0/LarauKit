@@ -1,10 +1,14 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import { formatToCurrency } from './numberHelper';
   import { formatDate } from './dateHelper';
   import type { Transaction } from './types';
 
   export let data: Transaction[];
-  export let onClick: (data: Transaction) => void;
+
+  function onClick(line: Transaction) {
+    goto(`?transactionId=${line.id}`, { noScroll: true });
+  }
 </script>
 
 <table>
