@@ -1,19 +1,16 @@
+import type { PageServerLoad } from './$types';
+
 import * as transaction from '$lib/server/db/transaction';
 import * as container from '$lib/server/db/container';
 
-type Params = {
-  params: {
-    containerId: number;
-  };
-};
+export const load: PageServerLoad = async ({ params }) => {
+  const containerId = Number(params.containerId);
 
-/** @type {import('./$types').PageLoad} */
-export async function load({ params }: Params) {
-  const transactions = await transaction.findByContainerId(params.containerId);
-  const containerTitle = await container.getById(params.containerId);
+  const transactions = await transaction.findByContainerId(containerId);
+  const containerTitle = await container.getById(containerId);
 
   return {
     transactions,
     title: containerTitle.title
   };
-}
+};

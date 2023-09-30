@@ -6,7 +6,7 @@ type Transaction = {
   data: number[];
 };
 
-export const load = (({ data }) => {
+export const load: PageLoad = ({ data }) => {
   function getCategory(categoryId: number) {
     return data.categories.find((category) => category.id === categoryId);
   }
@@ -45,4 +45,4 @@ export const load = (({ data }) => {
     splitIncomes,
     splitExpenses
   };
-}) satisfies PageLoad;
+};

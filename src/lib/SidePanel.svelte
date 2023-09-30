@@ -1,24 +1,33 @@
 <script lang="ts">
+  import { isPanelOpen } from '$lib/panelStore';
+
   export let isOpen = false;
   export let closePanel: () => void;
 
+  $: isPanelOpen.set(isOpen);
 </script>
 
 <section id="panel" data-panel={isOpen}>
   {#if isOpen === true}
-  <div>
-    <header>
-      <button on:click={closePanel}>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </header>
-    
-    <main>
-      <slot />
-    </main>
-  </div>
+    <div>
+      <header>
+        <button on:click={closePanel}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+    </div>
   {/if}
 </section>
 
@@ -34,8 +43,8 @@
     border-inline-start: 1px solid var(--color-background);
   }
 
-  #panel[data-panel="true"] {
-    transform: translateX(0px)
+  #panel[data-panel='true'] {
+    transform: translateX(0px);
   }
 
   div {
@@ -60,7 +69,6 @@
   }
 
   button:hover {
-    color: var(--color-primary)
+    color: var(--color-primary);
   }
-
 </style>

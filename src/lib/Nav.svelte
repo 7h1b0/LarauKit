@@ -121,7 +121,8 @@
     inline-size: var(--size-icon);
     block-size: var(--size-icon);
   }
-  svg, span {
+  svg,
+  span {
     flex-shrink: 0;
   }
 
@@ -130,12 +131,12 @@
     transition: opacity 2s var(--animation-timing);
   }
 
-  :global(body:has([data-panel="true"])) span {
-    opacity: 0;
-    transition-duration: 0.3s;
+  :global(div[data-shrink='true']) a {
+    padding: var(--space-xs) var(--space-m);
   }
 
-  :global(body:has([data-panel="true"])) a {
-    padding: var(--space-xs) var(--space-m);
+  :global(div[data-shrink='true']) span {
+    opacity: 0;
+    transition-duration: 0.3s;
   }
 </style>

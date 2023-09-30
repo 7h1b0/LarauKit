@@ -1,13 +1,17 @@
 <script lang="ts">
   import Nav from '$lib/Nav.svelte';
+  import { isPanelOpen } from '$lib/panelStore';
+
   import '../app.css';
 </script>
 
-<Nav />
+<div data-shrink={$isPanelOpen}>
+  <Nav />
 
-<main>
-  <slot />
-</main>
+  <main>
+    <slot />
+  </main>
+</div>
 
 <style>
   main {
