@@ -6,7 +6,7 @@ function addToDate(date: Date, offset: number) {
   return newDate;
 }
 
-export const load = (({ data }) => {
+export const load: PageLoad = ({ data }) => {
   const previousMonth = addToDate(data.date, -1);
   const nextMonth = addToDate(data.date, 1);
   return {
@@ -14,4 +14,4 @@ export const load = (({ data }) => {
     previousMonth,
     nextMonth
   };
-}) satisfies PageLoad;
+};
