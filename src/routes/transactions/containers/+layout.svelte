@@ -11,7 +11,7 @@
     <Header title="Containers" />
     <ul>
       {#each data.containers as container}
-        <li>
+        <li data-selected={container.id === data.selected}>
           <a href={`/transactions/containers/${container.id}`}>
             <p>{container.title}</p>
             <small>{formatToCurrency(container.balance)}</small>
@@ -46,6 +46,7 @@
     padding: var(--space-s) 0;
   }
 
+  li[data-selected='true'],
   a:hover,
   a:focus-visible {
     background: var(--color-background-section);

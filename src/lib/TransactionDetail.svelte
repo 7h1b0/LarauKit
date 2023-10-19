@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from '$app/forms';
   import type { Account, Category, Transaction, Container } from './types';
 
   export let transaction: Transaction | null;
@@ -8,11 +9,11 @@
 </script>
 
 {#if transaction !== null}
-  <form method="POST" action="?/updateTransaction">
+  <form method="POST" action="?/updateTransaction" use:enhance>
     <input type="hidden" name="id" value={transaction.id} />
     <label>
       Account
-      <select name="account">
+      <select name="account" value={transaction.accountId}>
         {#each accounts as account}
           <option value={account.id}>
             {account.bank} - {account.account}

@@ -4,7 +4,7 @@ import * as transaction from '$lib/server/db/transaction';
 import * as account from '$lib/server/db/account';
 import * as category from '$lib/server/db/category';
 
-import type { Actions, RequestEvent } from '@sveltejs/kit';
+import { redirect, type Actions, type RequestEvent } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ params }) => {
   const year = Number(params.year);
@@ -38,7 +38,8 @@ export const actions: Actions = {
 
     await transaction.update({ account, category, amount, id, description, container });
 
-    return { success: true };
+    const url = new URL(request.url);
+    throw redirect(302, url.pathname);
   },
 
   deleteTransaction: async ({ request }: RequestEvent) => {

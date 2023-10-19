@@ -35,7 +35,7 @@ export function update(transaction: PayloadTransaction) {
       categoryId: transaction.category,
       value: transaction.amount,
       description: transaction.description,
-      containerId: transaction.container
+      containerId: transaction.container ?? 0
     })
     .where({ id: transaction.id });
 }
