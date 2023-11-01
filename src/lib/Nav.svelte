@@ -77,7 +77,7 @@
 <style>
   nav {
     width: var(--size-nav);
-    position: fixed;
+    position: sticky;
     inset-block-start: 0;
     transition: width var(--animation-delay) var(--animation-timing);
     overflow: hidden;
@@ -86,7 +86,6 @@
   ul {
     list-style: none;
     margin-block-start: var(--space-m);
-    margin-inline: var(--space-s);
     padding: 0;
     display: flex;
     flex-direction: column;

@@ -14,9 +14,15 @@
 </div>
 
 <style>
+  div {
+    display: grid;
+    align-items: start;
+    grid-template-columns: var(--size-nav) 1fr;
+    gap: var(--space-m);
+    margin-inline: var(--space-s);
+    transition: all var(--animation-delay) var(--animation-timing);
+  }
   main {
     margin-block: 0 var(--space-m);
-    margin-inline: calc(var(--size-nav) + var(--space-m)) var(--space-m);
-    transition: margin-inline var(--animation-delay) var(--animation-timing);
   }
 </style>

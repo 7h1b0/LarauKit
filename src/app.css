@@ -3,8 +3,8 @@
   --space-s: calc(var(--space-m) / 2);
   --space-xs: calc(var(--space-m) / 3);
 
-  --size-nav: max(15vw, 230px);
-  --size-nav-shrink: calc(var(--space-m) * 2 + 18px + var(--space-s) * 2);
+  --size-nav: max(12vw, 220px);
+  --size-nav-shrink: calc(var(--space-m) * 2 + 18px);
   --size-icon: 18px;
 
   --font-l: 1.4rem;
