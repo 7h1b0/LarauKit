@@ -4,6 +4,7 @@
   import Header from '$lib/Header.svelte';
 
   export let data: PageData;
+
   $: labels = data.labels.map(label => `${label}`)
 
   function getValuePerYear(years: number[], yearlyCategoryBalance: {year: number, value: number}[]) {
@@ -11,6 +12,14 @@
       const value = yearlyCategoryBalance.find((balance) => balance.year === year);
       return value ? value.value : 0;
     });
+  }
+
+  function getExpenseValue(index: number): number {
+    const expense = data.expenses[index];
+    if (expense === undefined) {
+      return 0
+    }
+    return expense.value
   }
 </script>
 
@@ -24,13 +33,13 @@
       { label: 'Expenses', values: data.expenses.map((expense) => expense.value) },
       {
         label: 'Solde',
-        values: data.incomes.map((income, index) => income.value + data.expenses[index].value)
+        values: data.incomes.map((income, index) => income.value + getExpenseValue(index))
       },
       {
         label: 'Spent',
         format: 'percent',
         values: data.incomes.map(
-          (income, index) => Math.abs(data.expenses[index].value) / income.value
+          (income, index) => Math.abs(getExpenseValue(index)) / income.value
         )
       }
     ]}

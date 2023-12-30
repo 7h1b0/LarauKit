@@ -28,7 +28,10 @@ export async function load() {
     activity.findMonthlyCategoriesSum()
   ]);
 
-  const labels = incomes.map(({ year }) => year);
+  const labels =
+    incomes.length > expenses.length
+      ? incomes.map(({ year }) => year)
+      : expenses.map(({ year }) => year);
   const incomeCategories = Array.from(
     new Set(monthlyCategorySum.filter(({ income }) => income).map(({ title }) => title))
   );
