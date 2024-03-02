@@ -6,6 +6,7 @@
   export let categories: Category[];
   export let accounts: Account[];
   export let containers: Container[];
+
 </script>
 
 {#if transaction !== null}
