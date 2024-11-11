@@ -1,14 +1,18 @@
 <script lang="ts">
   import { formatToCurrency } from './numberHelper';
 
-  export let title: string;
-  export let maximum: number;
-  export let value: number;
+  interface Props {
+    title: string;
+    maximum: number;
+    value: number;
+  }
+
+  let { title, maximum, value }: Props = $props();
 </script>
 
 <label>
   {title}: {formatToCurrency(value)}
-  <progress max={maximum} value={Math.abs(value)} />
+  <progress max={maximum} value={Math.abs(value)}></progress>
 </label>
 
 <style>

@@ -1,15 +1,19 @@
 <script lang="ts">
   import { getShortMonths } from './dateHelper';
 
-  export let primary: number[];
-  export let secondary: number[];
+  interface Props {
+    primary: number[];
+    secondary: number[];
+  }
+
+  let { primary, secondary }: Props = $props();
 
   const boxSize = 90;
 
-  $: legends = Math.max(Math.ceil(Math.max(...primary) / 1000), 6);
-  $: max = legends * 1000;
-  $: primaryPercentage = primary.map((nmb) => Math.abs((nmb * boxSize) / max));
-  $: secondaryPercentage = secondary.map((nmb) => Math.abs((nmb * boxSize) / max));
+  let legends = $derived(Math.max(Math.ceil(Math.max(...primary) / 1000), 6));
+  let max = $derived(legends * 1000);
+  let primaryPercentage = $derived(primary.map((nmb) => Math.abs((nmb * boxSize) / max)));
+  let secondaryPercentage = $derived(secondary.map((nmb) => Math.abs((nmb * boxSize) / max)));
 
   function getWithFallback(nmb?: number) {
     return nmb ?? 0;

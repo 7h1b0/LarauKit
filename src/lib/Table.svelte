@@ -7,14 +7,18 @@
     format?: 'percent' | 'currency';
   };
 
-  export let labels: string[];
-  export let datasets: DataSet[];
+  interface Props {
+    labels: string[];
+    datasets: DataSet[];
+  }
+
+  let { labels, datasets }: Props = $props();
 </script>
 
 <table>
   <thead>
     <tr>
-      <td />
+      <td></td>
       {#each labels as label}
         <td>{label}</td>
       {/each}

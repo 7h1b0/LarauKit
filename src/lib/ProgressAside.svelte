@@ -1,10 +1,14 @@
 <script lang="ts">
   import Progress from './Progress.svelte';
   import type { ProgressType } from './types';
-  export let title: string;
-  export let progressList: ProgressType[];
+  interface Props {
+    title: string;
+    progressList: ProgressType[];
+  }
 
-  $: maximum = progressList.reduce((acc, { value }) => Math.max(acc, value), 0);
+  let { title, progressList }: Props = $props();
+
+  let maximum = $derived(progressList.reduce((acc, { value }) => Math.max(acc, value), 0));
 </script>
 
 <aside>

@@ -1,11 +1,15 @@
 <script lang="ts">
-  export let title: string;
-  export let previousNavigationLink: string;
-  export let nextNavigationLink: string;
+  interface Props {
+    title: string;
+    previousNavigationLink: string;
+    nextNavigationLink: string;
+  }
+
+  let { title, previousNavigationLink, nextNavigationLink }: Props = $props();
 </script>
 
 <div>
-  <a href={previousNavigationLink}>
+  <a href={previousNavigationLink} aria-label="Previous">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -21,7 +25,7 @@
     </svg>
   </a>
   <p>{title}</p>
-  <a href={nextNavigationLink}>
+  <a href={nextNavigationLink} aria-label="Next">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

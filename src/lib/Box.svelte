@@ -1,12 +1,19 @@
 <script lang="ts">
-  export let title: string;
-  export let variant: 'primary' | 'secondary';
+  import type { Snippet } from 'svelte';
+
+  interface Props {
+    title: string;
+    variant: 'primary' | 'secondary';
+    children: Snippet;
+  }
+
+  let { title, variant, children }: Props = $props();
 </script>
 
 <aside data-variant={variant}>
   <h1>{title}</h1>
   <div class="items">
-    <slot />
+    {@render children()}
   </div>
 </aside>
 

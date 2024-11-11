@@ -4,7 +4,11 @@
   import { formatToCurrency } from '$lib/numberHelper';
   import InformationItem from '$lib/InformationItem.svelte';
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
 </script>
 
 <svelte:head>

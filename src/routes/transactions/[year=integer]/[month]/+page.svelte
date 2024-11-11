@@ -8,22 +8,26 @@
   import type { PageData } from './$types';
   import ProgressAside from '$lib/ProgressAside.svelte';
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
 
   const intl = new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'long'
   });
 
-  let progressList: ProgressType[];
-
-  $: progressList = data.categories.map((category) => {
+  let progressList: ProgressType[] = $derived(data.categories.map((category) => {
     const total = data.transactions
       .filter((transaction) => transaction.categoryId === category.id)
       .reduce((acc, transaction) => acc + transaction.value, 0);
 
     return { title: category.title, value: total };
-  });
+  }));
+
+  
 
   function filterTransaction(transactions: Transaction[], accountId: number, categoryId: number) {
     return transactions.filter((transaction) => {

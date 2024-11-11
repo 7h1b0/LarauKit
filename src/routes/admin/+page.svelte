@@ -2,8 +2,12 @@
   import Header from '$lib/Header.svelte';
   import type { PageData, ActionData } from './$types';
 
-  export let data: PageData;
-  export let form: ActionData;
+  interface Props {
+    data: PageData;
+    form: ActionData;
+  }
+
+  let { data, form }: Props = $props();
 </script>
 
 <Header title="Admin" />
@@ -45,7 +49,7 @@
     <label class="expand">
       Container
       <select name="container">
-        <option value={0} />
+        <option value={0}></option>
         {#each data.containers as container}
           <option value={container.id}>
             {container.title}
@@ -126,7 +130,7 @@
     color: var(--color-text);
   }
   
-  :is(select, input):focus {
+  :is(:global(select, input)):focus {
     outline: var(--color-primary) 2px solid;
   }
 

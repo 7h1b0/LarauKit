@@ -2,10 +2,19 @@
   import { enhance } from '$app/forms';
   import type { Account, Category, Transaction, Container } from './types';
 
-  export let transaction: Transaction | null;
-  export let categories: Category[];
-  export let accounts: Account[];
-  export let containers: Container[];
+  interface Props {
+    transaction: Transaction | null;
+    categories: Category[];
+    accounts: Account[];
+    containers: Container[];
+  }
+
+  let {
+    transaction,
+    categories,
+    accounts,
+    containers
+  }: Props = $props();
 
 </script>
 
@@ -79,7 +88,7 @@
     color: var(--color-text);
   }
 
-  :is(select, input):focus {
+  :is(:global(select, input)):focus {
     outline: var(--color-primary) 2px solid;
   }
 

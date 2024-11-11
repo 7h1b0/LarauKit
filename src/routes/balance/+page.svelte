@@ -3,9 +3,13 @@
   import Table from '$lib/Table.svelte';
   import Header from '$lib/Header.svelte';
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
 
-  $: labels = data.labels.map(label => `${label}`)
+  let { data }: Props = $props();
+
+  let labels = $derived(data.labels.map(label => `${label}`))
 
   function getValuePerYear(years: number[], yearlyCategoryBalance: {year: number, value: number}[]) {
     return years.map((year) => {

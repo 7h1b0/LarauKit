@@ -5,9 +5,13 @@
   import IconUp from './IconUp.svelte';
   import IconStack from './IconStack.svelte';
 
-  export let amount: number;
-  export let label: string;
-  export let icon: 'bar' | 'down' | 'up' | 'stack';
+  interface Props {
+    amount: number;
+    label: string;
+    icon: 'bar' | 'down' | 'up' | 'stack';
+  }
+
+  let { amount, label, icon }: Props = $props();
 
   const iconMap = {
     bar: IconBar,
@@ -15,11 +19,13 @@
     up: IconUp,
     down: IconDown
   };
+
+  const SvelteComponent = $derived(iconMap[icon]);
 </script>
 
 <div class="container">
   <div class="icon">
-    <svelte:component this={iconMap[icon]} />
+    <SvelteComponent />
   </div>
 
   <p>{label}</p>

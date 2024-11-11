@@ -4,7 +4,11 @@
   import InformationItem from '$lib/InformationItem.svelte';
   import { formatToPercent } from '$lib/numberHelper';
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
+
+  let { data }: Props = $props();
 
   function percent(value: number) {
     return formatToPercent(value / data.patrimony);

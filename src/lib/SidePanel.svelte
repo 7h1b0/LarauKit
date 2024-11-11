@@ -1,17 +1,27 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte';
+
   import { isPanelOpen } from '$lib/panelStore';
 
-  export let isOpen = false;
-  export let closePanel: () => void;
+  interface Props {
+    isOpen?: boolean;
+    closePanel: () => void;
+    children: Snippet;
+  }
 
-  $: isPanelOpen.set(isOpen);
+  let { isOpen = false, closePanel, children }: Props = $props();
+
+  $effect(() => {
+    isPanelOpen.set(isOpen);
+  
+  })
 </script>
 
 <section id="panel" data-panel={isOpen}>
   {#if isOpen === true}
     <div>
       <header>
-        <button on:click={closePanel}>
+        <button type="button" onclick={closePanel} aria-label="Close">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -25,7 +35,7 @@
       </header>
 
       <main>
-        <slot />
+        {@render children()}
       </main>
     </div>
   {/if}

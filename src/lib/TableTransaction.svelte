@@ -4,7 +4,11 @@
   import { formatDate } from './dateHelper';
   import type { Transaction } from './types';
 
-  export let data: Transaction[];
+  interface Props {
+    data: Transaction[];
+  }
+
+  let { data }: Props = $props();
 
   function onClick(line: Transaction) {
     goto(`?transactionId=${line.id}`, { noScroll: true });
@@ -22,7 +26,7 @@
   </thead>
   <tbody>
     {#each data as line}
-      <tr on:click={() => onClick(line)}>
+      <tr onclick={() => onClick(line)}>
         <td>
           <small>{line.bank}</small>
           <p>{line.account}</p>

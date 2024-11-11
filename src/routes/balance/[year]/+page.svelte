@@ -5,10 +5,14 @@
   import Navigation from '$lib/Navigation.svelte';
   import type { PageData } from './$types';
 
-  export let data: PageData;
+  interface Props {
+    data: PageData;
+  }
 
-  $: nextYear = data.year + 1;
-  $: previous = data.year - 1;
+  let { data }: Props = $props();
+
+  let nextYear = $derived(data.year + 1);
+  let previous = $derived(data.year - 1);
 </script>
 
 <Header title="Monthly Balance" />

@@ -8,8 +8,12 @@
   };
 
   const titles = getShortMonths();
-  export let lines: Transaction[];
-  export let tableTitle = '';
+  interface Props {
+    lines: Transaction[];
+    tableTitle?: string;
+  }
+
+  let { lines, tableTitle = '' }: Props = $props();
 </script>
 
 <table>

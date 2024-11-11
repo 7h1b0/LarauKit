@@ -2,8 +2,12 @@
   import { filterAccountId, filterCategoryId } from '$lib/filterStore';
   import type { Account, Category } from './types';
 
-  export let accounts: Account[];
-  export let categories: Category[];
+  interface Props {
+    accounts: Account[];
+    categories: Category[];
+  }
+
+  let { accounts, categories }: Props = $props();
 </script>
 
 <aside>
@@ -11,7 +15,7 @@
   <label>
     Account
     <select name="account" bind:value={$filterAccountId}>
-      <option value={-1} />
+      <option value={-1}></option>
       {#each accounts as account}
         <option value={account.id}>
           {account.bank} - {account.account}
@@ -23,7 +27,7 @@
   <label>
     Category
     <select name="category" bind:value={$filterCategoryId}>
-      <option value={-1} />
+      <option value={-1}></option>
       {#each categories as category}
         <option value={category.id}>
           {category.title}

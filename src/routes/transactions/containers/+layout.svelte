@@ -1,9 +1,15 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte';
   import type { LayoutData } from './$types';
   import Header from '$lib/Header.svelte';
   import { formatToCurrency } from '$lib/numberHelper';
 
-  export let data: LayoutData;
+  interface Props {
+    data: LayoutData;
+    children: Snippet;
+  }
+
+  let { data, children }: Props = $props();
 </script>
 
 <div>
@@ -21,7 +27,7 @@
     </ul>
   </aside>
   <section>
-    <slot />
+    {@render children()}
   </section>
 </div>
 
