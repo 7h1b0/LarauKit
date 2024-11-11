@@ -44,7 +44,6 @@
 <style>
   table {
     table-layout: fixed;
-    border-collapse: collapse;
     overflow: hidden;
     inline-size: 100%;
     background: var(--color-background-section);
@@ -57,10 +56,11 @@
     padding: var(--space-s);
   }
 
-  tbody tr {
-    border-block-start: 1px solid var(--color-background);
-    font-size: var(--font-m);
+  table, td, tr {
+    border: 1px solid var(--color-background);
+    border-collapse: collapse;
   }
+  
   td {
     color: var(--color-text);
     padding: var(--space-xs) var(--space-s);

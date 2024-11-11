@@ -45,7 +45,7 @@
   );
 }
 
-div[data-shrink='true'] {
+body:has([data-panel="true"]) {
   --size-nav: var(--size-nav-shrink);
 }
 

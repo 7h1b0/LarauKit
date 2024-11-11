@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { Snippet } from 'svelte';
+  import type { Snippet } from 'svelte';
   import Nav from '$lib/Nav.svelte';
-  import { isPanelOpen } from '$lib/panelStore';
 
   import '../app.css';
+
   interface Props {
     children: Snippet;
   }
@@ -11,7 +11,7 @@
   let { children }: Props = $props();
 </script>
 
-<div data-shrink={$isPanelOpen}>
+<div>
   <Nav />
 
   <main>

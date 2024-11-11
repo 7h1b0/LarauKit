@@ -1,8 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
 
-  import { isPanelOpen } from '$lib/panelStore';
-
   interface Props {
     isOpen?: boolean;
     closePanel: () => void;
@@ -10,11 +8,6 @@
   }
 
   let { isOpen = false, closePanel, children }: Props = $props();
-
-  $effect(() => {
-    isPanelOpen.set(isOpen);
-  
-  })
 </script>
 
 <section id="panel" data-panel={isOpen}>
