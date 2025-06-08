@@ -10,7 +10,11 @@
 
   const boxSize = 90;
 
-  let legends = $derived(Math.max(Math.ceil(Math.max(...primary) / 1000), 6));
+  const maxPrimary = $derived(Math.max(...primary.map(n => Math.abs(n))));
+  const maxSecondary = $derived(Math.max(...secondary.map(n => Math.abs(n))));
+  const maxValue = $derived(Math.max(maxPrimary, maxSecondary));
+
+  let legends = $derived(Math.max(Math.ceil(maxValue / 1000), 6));
   let max = $derived(legends * 1000);
   let primaryPercentage = $derived(primary.map((nmb) => Math.abs((nmb * boxSize) / max)));
   let secondaryPercentage = $derived(secondary.map((nmb) => Math.abs((nmb * boxSize) / max)));
