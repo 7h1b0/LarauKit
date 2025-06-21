@@ -110,26 +110,39 @@ export function findByContainerId(containerId: number): Promise<Transaction[]> {
     .then((transactions) => transactions.map((transaction) => ({ ...transaction })));
 }
 
-export function findIncomesMonthly(year: number): Promise<number[]> {
+type Pair = {
+  month: number,
+  value: number,
+}
+
+export function findIncomesMonthly(year: number): Promise<Record<number, number>> {
   return knex('transaction')
     .sum({ value: 'value' })
+    .select(knex.raw('MONTH(performedAt) as month'))
     .join('category', 'category.id', 'transaction.categoryId')
     .whereRaw('YEAR(performedAt) = ?', [year])
     .where('category.income', 1)
     .groupByRaw('MONTH(performedAt)')
     .orderByRaw('MONTH(performedAt) ASC')
-    .then((incomes) => incomes.map(({ value }) => value));
+    .then((incomes) => incomes.reduce((acc, { value, month }) => {
+      acc[month] = value;
+      return acc;
+    }, {}));
 }
 
-export function findExpensesMonthly(year: number): Promise<number[]> {
+export function findExpensesMonthly(year: number): Promise<Record<number, number>> {
   return knex('transaction')
     .sum({ value: 'value' })
+    .select(knex.raw('MONTH(performedAt) as month'))
     .join('category', 'category.id', 'transaction.categoryId')
     .whereRaw('YEAR(performedAt) = ?', [year])
     .andWhere('category.income', 0)
     .groupByRaw('MONTH(performedAt)')
     .orderByRaw('MONTH(performedAt) ASC')
-    .then((expenses) => expenses.map(({ value }) => value));
+    .then((expenses) => expenses.reduce((acc, { value, month }) => {
+      acc[month] = value;
+      return acc;
+    }, {}));
 }
 
 export function findExpensesForTheMonth(year: number, month: number) {

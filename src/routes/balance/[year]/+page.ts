@@ -38,9 +38,17 @@ export const load: PageLoad = ({ data }) => {
     }
   });
 
+  const incomes = Array.from({length: 12}, (_, i) => i+1).map(month => {
+    return data.incomes[month] ?? 0;
+  });
+
+  const expenses = Array.from({length: 12}, (_, i) => i+1).map(month => {
+    return data.expenses[month] ?? 0;
+  });
+
   return {
-    incomes: data.incomes,
-    expenses: data.expenses,
+    incomes,
+    expenses,
     year: data.year,
     splitIncomes,
     splitExpenses
