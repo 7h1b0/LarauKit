@@ -12,39 +12,33 @@
 
 <aside data-variant={variant}>
   <h1>{title}</h1>
-  <div class="items">
-    {@render children()}
-  </div>
+  {@render children()}
 </aside>
 
 <style>
   aside {
+    display: grid;
+    grid-template-columns: subgrid;
     background: var(--color);
     color: var(--color);
     padding: var(--space-s);
     border-radius: var(--rounded);
+    row-gap: var(--space-s);
   }
 
   aside[data-variant='primary'] {
+    grid-column: span 1;
     --color: var(--color-primary);
   }
 
   aside[data-variant='secondary'] {
+    grid-column: span 2;
     --color: var(--color-secondary);
-  }
-
-  .items {
-    display: grid;
-    margin-block-start: var(--space-s);
-    grid-auto-flow: column;
-    grid-template-rows: 1fr 1fr;
-    gap: var(--space-s);
-    grid-column: 2 / 4;
   }
 
   h1 {
     color: var(--color-text-inverse);
     font-size: var(--font-l);
-    opacity: 0.9;
+    grid-column: 1 / -1;
   }
 </style>

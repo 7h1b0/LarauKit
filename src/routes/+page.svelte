@@ -16,23 +16,21 @@
   <meta name="description" content="Larau" />
 </svelte:head>
 
-<div class="grid-1">
-  <div class="grid-1-2">
-    <Box title="This month" variant="primary">
-      <InformationItem label="Income" icon="up" amount={data.income} />
-      <InformationItem label="Expense" icon="down" amount={data.expense} />
-    </Box>
+<div class="grid">
+  <Box title="This month" variant="primary">
+    <InformationItem label="Income" icon="up" amount={data.income} />
+    <InformationItem label="Expense" icon="down" amount={data.expense} />
+  </Box>
 
-    <Box title="This year" variant="secondary">
-      <InformationItem label="Income" icon="up" amount={data.incomeYear} />
-      <InformationItem label="Expense" icon="down" amount={data.expenseYear} />
-      <InformationItem label="Patrimony" icon="bar" amount={data.patrimony} />
-      <InformationItem label="Increase" icon="stack" amount={data.incomeYear + data.expenseYear} />
-    </Box>
-  </div>
+  <Box title="This year" variant="secondary">
+    <InformationItem label="Income" icon="up" amount={data.incomeYear} />
+    <InformationItem label="Expense" icon="down" amount={data.expenseYear} />
+    <InformationItem label="Patrimony" icon="bar" amount={data.patrimony} />
+    <InformationItem label="Increase" icon="stack" amount={data.incomeYear + data.expenseYear} />
+  </Box>
 
   {#each data.groupedAccounts as group}
-    <aside class="grid-3">
+    <aside class="subgrid">
       {#each group as account}
         <div>
           <small>{account.bank}</small>
@@ -49,6 +47,7 @@
     background: var(--color-background-section);
     border-radius: var(--rounded);
     padding: var(--space-xs) var(--space-s);
+    row-gap: var(--space-s);
   }
 
   small {
@@ -65,23 +64,16 @@
     margin-block-start: var(--space-xs);
   }
 
-  .grid-1,
-  .grid-3,
-  .grid-1-2 {
+  .grid {
     display: grid;
     gap: var(--space-m);
-  }
-
-  .grid-1 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-block-start: var(--space-m);
-    grid-template-columns: 1fr;
   }
 
-  .grid-1-2 {
-    grid-template-columns: 1fr 2fr;
-  }
-
-  .grid-3 {
-    grid-template-columns: 1fr 1fr 1fr;
+  .subgrid {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span 3;
   }
 </style>
