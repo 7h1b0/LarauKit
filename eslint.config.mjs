@@ -1,12 +1,11 @@
 // @ts-check
 
-import eslint from '@eslint/js';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import sveltePlugin from 'eslint-plugin-svelte';
 import svelteParser from 'svelte-eslint-parser';
 
-export default tseslint.config(
-  eslint.configs.recommended,
+export default defineConfig(
   ...tseslint.configs.recommended,
   {
     files: ['**/*.svelte'],
@@ -23,8 +22,6 @@ export default tseslint.config(
       '@typescript-eslint': tseslint.plugin
     },
     rules: {
-      ...tseslint.configs.recommended.rules,
-      ...sveltePlugin.configs.recommended.rules,
       'no-inner-declarations': 'off'
     }
   },

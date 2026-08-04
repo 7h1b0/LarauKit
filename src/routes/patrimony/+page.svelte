@@ -27,11 +27,6 @@
       icon="stack"
       amount={data.lifeInsurance}
     />
-    <InformationItem
-      label={`Account (${percent(data.account)})`}
-      icon="stack"
-      amount={data.account}
-    />
     <InformationItem label={`Saving (${percent(data.saving)})`} icon="stack" amount={data.saving} />
   </Box>
 </div>
@@ -41,9 +36,6 @@
     display: grid;
     gap: var(--space-m);
     margin: var(--space-m) 0 0;
-  }
-
-  .grid-1-2 {
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 </style>

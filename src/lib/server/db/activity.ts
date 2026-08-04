@@ -85,6 +85,6 @@ export function findByAccountType(accountType: number) {
   return knex('transaction')
     .sum({ value: 'value' })
     .join('account', 'transaction.accountId', 'account.id')
-    .where('accountTypeId', accountType)
+    .where('investmentId', accountType)
     .then((data) => data[0].value);
 }

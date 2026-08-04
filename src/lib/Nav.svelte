@@ -16,7 +16,10 @@
       >
     </li>
     <li>
-      <a data-sveltekit-prefetch aria-current={/transactions\/\d{4}/.test($page.url.pathname)} href={`/transactions/${year}/${month}`}
+      <a
+        data-sveltekit-prefetch
+        aria-current={/transactions\/\d{4}/.test($page.url.pathname)}
+        href={`/transactions/${year}/${month}`}
         ><svg
           width="24"
           height="24"
@@ -31,14 +34,21 @@
       >
     </li>
     <li>
-      <a data-sveltekit-prefetch href={`/balance/${year}`} aria-current={$page.url.pathname.includes('/balance/')}>
+      <a
+        data-sveltekit-prefetch
+        href={`/balance/${year}`}
+        aria-current={$page.url.pathname.includes('/balance/')}
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M7 19h-6v-11h6v11zm8-18h-6v18h6v-18zm8 11h-6v7h6v-7zm1 9h-24v2h24v-2z" />
         </svg><span>Monthly Balance</span></a
       >
     </li>
     <li>
-      <a data-sveltekit-prefetch href="/balance/" aria-current={$page.url.pathname.endsWith('/balance')}
+      <a
+        data-sveltekit-prefetch
+        href="/balance/"
+        aria-current={$page.url.pathname.endsWith('/balance')}
         ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M7 19h-6v-11h6v11zm8-18h-6v18h6v-18zm8 11h-6v7h6v-7zm1 9h-24v2h24v-2z" />
         </svg><span>Yearly Balance</span></a
@@ -97,7 +107,7 @@
     fill: var(--color-text-secondary);
   }
 
-  li:has([aria-current="true"]),
+  li:has([aria-current='true']),
   li:hover {
     fill: var(--color-primary);
     color: var(--color-text);
@@ -130,12 +140,11 @@
     transition: opacity 2s var(--animation-timing);
   }
 
-
-  :global(body:has([data-panel="true"])) a {
+  :global(body:has(dialog[open])) a {
     padding: var(--space-xs) var(--space-m);
   }
 
-  :global(body:has([data-panel="true"])) span {
+  :global(body:has(dialog[open])) span {
     opacity: 0;
     transition-duration: 0.3s;
   }

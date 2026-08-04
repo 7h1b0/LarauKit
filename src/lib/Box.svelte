@@ -24,6 +24,7 @@
     padding: var(--space-s);
     border-radius: var(--rounded);
     row-gap: var(--space-s);
+    place-content: start;
   }
 
   aside[data-variant='primary'] {

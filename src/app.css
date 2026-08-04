@@ -45,10 +45,6 @@
   );
 }
 
-body:has([data-panel='true']) {
-  --size-nav: var(--size-nav-shrink);
-}
-
 html,
 body {
   font-family:
@@ -64,6 +60,10 @@ body {
 
 body {
   background-color: var(--color-background);
+
+  &:has(dialog[open]) {
+    --size-nav: var(--size-nav-shrink);
+  }
 }
 
 * {
